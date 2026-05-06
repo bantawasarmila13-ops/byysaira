@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BySaira</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Inter',sans-serif;
+    background:#f8f5f0;
+    color:#5a4a42;
+    overflow-x:hidden;
+    scroll-behavior:smooth;
+}
+
+/* 🌸 PETALS */
+.petal{
+    position:fixed;
+    width:18px;
+    height:18px;
+    opacity:0.6;
+    animation:fall linear infinite;
+    pointer-events:none;
+    z-index:1;
+}
+
+@keyframes fall{
+    from{transform:translateY(-10px) rotate(0deg);}
+    to{transform:translateY(100vh) rotate(360deg);}
+}
+
+/* 🌙 HERO */
+.hero{
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background: radial-gradient(circle at top, #f8f5f0, #f3d6d0);
+}
+
+.hero h1{
+    font-family:'Playfair Display',serif;
+    font-size:3.8rem;
+}
+
+.hero p{
+    opacity:0.7;
+    margin-top:10px;
+}
+
+/* ✨ 3D CARD BASE STYLE */
+.card{
+    transform-style:preserve-3d;
+    transition:transform 0.5s ease, box-shadow 0.5s ease;
+    will-change:transform;
+}
+
+/* 🌸 HOVER 3D EFFECT */
+.card:hover{
+    transform: perspective(1000px) rotateX(6deg) rotateY(-6deg) scale(1.02);
+    box-shadow:0 25px 60px rgba(0,0,0,0.12);
+}
+
+/* 💌 JOURNAL */
+.journal{
+    max-width:750px;
+    margin:-60px auto 60px;
+    padding:40px;
+    background:rgba(255,255,255,0.7);
+    backdrop-filter:blur(12px);
+    border-radius:28px;
+    line-height:1.9;
+}
+
+.journal h2{
+    font-family:'Playfair Display',serif;
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.signature{
+    text-align:right;
+    margin-top:20px;
+    opacity:0.6;
+    font-style:italic;
+}
+
+/* 🌷 VISUAL SECTION */
+.visual{
+    max-width:850px;
+    margin:60px auto;
+    padding:40px;
+    background:rgba(255,255,255,0.6);
+    backdrop-filter:blur(12px);
+    border-radius:28px;
+    text-align:center;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    max-width:320px;
+    margin:20px auto;
+}
+
+.grid div{
+    height:95px;
+    background:#e8dccf;
+    border-radius:14px;
+}
+
+.mood{
+    font-size:0.9rem;
+    opacity:0.75;
+    margin-top:15px;
+    line-height:1.6;
+}
+
+/* 📷 BUTTON */
+.insta{
+    display:inline-block;
+    margin-top:18px;
+    padding:12px 26px;
+    background:#c8b6a6;
+    color:white;
+    border-radius:30px;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.insta:hover{
+    transform:scale(1.05);
+}
+
+/* 💬 COMMENTS */
+.comments{
+    text-align:center;
+    padding:70px 20px;
+}
+
+input,textarea{
+    width:90%;
+    max-width:420px;
+    padding:14px;
+    margin:10px 0;
+    border:none;
+    border-radius:14px;
+    background:white;
+    box-shadow:0 10px 25px rgba(0,0,0,0.05);
+}
+
+button{
+    padding:12px 28px;
+    border:none;
+    background:#c8b6a6;
+    color:white;
+    border-radius:30px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    transform:scale(1.05);
+}
+
+/* FADE IN */
+.section{
+    opacity:0;
+    transform:translateY(30px);
+    transition:1s ease;
+}
+
+.section.show{
+    opacity:1;
+    transform:translateY(0);
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🌸 FLOWERS -->
+<script>
+for(let i=0;i<20;i++){
+    let petal=document.createElement("div");
+    petal.className="petal";
+
+    petal.innerHTML=`
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="#f3d6d0">
+        <path d="M12 2c1.5 2 3 4 3 6s-1.5 4-3 6-3-4-3-6 1.5-4 3-6zm0 20c-4-2-6-5-6-8s2-6 6-8c4 2 6 5 6 8s-2 6-6 8z"/>
+    </svg>
+    `;
+
+    petal.style.left=Math.random()*100+"vw";
+    petal.style.animationDuration=(6+Math.random()*6)+"s";
+
+    document.body.appendChild(petal);
+}
+</script>
+
+<!-- 🌙 HERO -->
+<section class="hero section">
+    <h1>BySaira</h1>
+    <p>a soft space for thoughts & feelings</p>
+</section>
+
+<!-- 💌 JOURNAL (3D CARD) -->
+<section class="journal card section">
+    <h2>recent thoughts</h2>
+
+    <p>
+        i’ve been a little quiet lately, not because something is wrong, but because i’ve been learning how to sit with my own life more gently. there’s a kind of peace in slowing down, in not forcing everything to make sense right away, and in allowing myself to simply exist without constantly trying to fix or rush who i am becoming.
+    </p>
+
+    <p>
+        life isn’t perfect, and it probably never will be, but i’ve started noticing how much beauty exists in the in-between moments—the quiet mornings, the thoughts that feel softer now, the small parts of the day that don’t ask for attention but still feel meaningful.
+    </p>
+
+    <p>
+        i think i’m slowly becoming someone who can appreciate where she is while still growing into who she wants to be, and that balance feels really grounding.
+    </p>
+
+    <p>
+        to whoever is reading this, i genuinely hope your days feel a little lighter. i hope you find small reasons to breathe easier, to smile without forcing it, and to be kinder to yourself even on the days you feel behind. you don’t have to have everything figured out right now. you are allowed to take your time, to rest, and to grow at your own pace.
+    </p>
+
+    <p>
+        you are doing better than you think, even if it doesn’t always feel like it.
+    </p>
+
+    <div class="signature">— bysaira</div>
+</section>
+
+<!-- 🌷 VISUAL IDENTITY (3D CARD) -->
+<section class="visual card section">
+    <h2>connect with me visually</h2>
+
+    <div class="grid">
+        <div></div><div></div><div></div>
+        <div></div><div></div><div></div>
+    </div>
+
+    <p class="mood">
+        soft fragments of life • emotional stillness • quiet growth<br><br>
+        currently feeling: calm softness<br>
+        currently loving: simplicity<br>
+        currently learning: patience with myself
+    </p>
+
+    <a class="insta" href="https://instagram.com/dcanee" target="_blank">
+        @dcanee
+    </a>
+</section>
+
+<!-- 💬 COMMENTS (3D CARD) -->
+<section class="comments card section">
+    <h2>leave something gentle 💌</h2>
+
+    <input placeholder="your name (optional)">
+    <br>
+    <textarea rows="4" placeholder="write something gentle..."></textarea>
+    <br>
+    <button>share your thoughts</button>
+</section>
+
+<!-- ✨ SCROLL ANIMATION -->
+<script>
+const sections=document.querySelectorAll('.section');
+
+window.addEventListener('scroll',()=>{
+    sections.forEach(sec=>{
+        if(sec.getBoundingClientRect().top < window.innerHeight-100){
+            sec.classList.add('show');
+        }
+    });
+});
+</script>
+
+</body>
+</html>
